@@ -1,40 +1,36 @@
-import { useConfig, useEntity, useUser } from 'hooks';
-import { FunctionComponent } from 'preact';
-import styled from 'styled-components';
+import { FunctionComponent } from 'preact'
+import styled from 'styled-components'
+
+import { useConfig, useEntity, useUser } from 'hooks'
 
 const Card: FunctionComponent = () => {
-  const sun = useEntity('sun.sun');
-  const config = useConfig();
-  const user = useUser();
+  const sun = useEntity('sun.sun')
+  const config = useConfig()
+  const user = useUser()
 
   return (
     <Root>
       <Text>
-        <b>
-          Hi,
-          {' '}
-          { user?.name }
-          !
-        </b>
+        <b>Hi, {user?.name}!</b>
       </Text>
-      <Text><b>{ sun?.attributes.friendly_name }</b></Text>
-      <Text>{ sun?.state }</Text>
-      <pre>
-        { JSON.stringify(config || {}, null, 2) }
-      </pre>
+      <Text>
+        <b>{sun?.attributes.friendly_name}</b>
+      </Text>
+      <Text>{sun?.state}</Text>
+      <pre>{JSON.stringify(config || {}, null, 2)}</pre>
     </Root>
-  );
-};
+  )
+}
 
-export default Card;
+export default Card
 
 const Text = styled.p`
   & > b {
     color: var(--primary-color);
     font-weight: bold;
   }
-`;
+`
 
 const Root = styled.div`
   padding: 1rem;
-`;
+`

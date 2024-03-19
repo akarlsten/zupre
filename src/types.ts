@@ -1,5 +1,5 @@
 export type Config = {
-  type: string;
+  type: string
 } & {
- // Your config goes here!
+  // Your config goes here!
 }
