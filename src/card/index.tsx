@@ -1,17 +1,17 @@
 import { FunctionComponent } from 'preact'
 import styled from 'styled-components'
 
-import { useConfig, useEntity, useUser } from 'hooks'
+import { useConfig, useEntity, useHass, useUser } from 'hooks'
 
 const Card: FunctionComponent = () => {
   const sun = useEntity('sun.sun')
+  const me = useEntity('person.adam_karlsten')
   const config = useConfig()
-  const user = useUser()
 
   return (
     <Root>
       <Text>
-        <b>Hi, {user?.name}!</b>
+        <b>Hi, {me?.attributes?.friendly_name}!</b>
       </Text>
       <Text>
         <b>{sun?.attributes.friendly_name}</b>

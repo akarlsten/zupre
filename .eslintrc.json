@@ -29,7 +29,8 @@
     "no-use-before-define": 0,
     "react/function-component-definition": 0,
     "react/no-unescaped-entities": 0,
-    "import/extensions": 0
+    "import/extensions": 0,
+    "no-unused-vars": 1
   },
   "ignorePatterns": [
     "dist/**/*",
