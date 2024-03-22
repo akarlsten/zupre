@@ -7,22 +7,25 @@ import { HomeAssistant } from 'custom-card-helpers'
 import { render } from 'preact'
 import { StyleSheetManager } from 'styled-components'
 
-import store from 'store'
+import { Config } from 'types'
 
 import Card from './card'
 
 // TODO:
-// * Investigate: https://github.com/dangreco/zupre/issues/2
 // * Switch to Tailwind or Twind
 
 class BoilerplateCard extends HTMLElement {
+  private _hass: HomeAssistant | undefined
+
+  private _config: Config
+
   set hass(hass: HomeAssistant | undefined) {
-    store.setState({ hass })
+    this._hass = hass
     this._render()
   }
 
   setConfig(config: any) {
-    store.setState({ config })
+    this._config = config
     this._render()
   }
 
@@ -31,7 +34,10 @@ class BoilerplateCard extends HTMLElement {
       <StyleSheetManager target={this}>
         {/* @ts-ignore */}
         <ha-card>
-          <Card />
+          <Card
+            hass={this._hass}
+            config={this._config}
+          />
           {/* @ts-ignore */}
         </ha-card>
       </StyleSheetManager>,

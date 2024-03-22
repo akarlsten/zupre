@@ -1,5 +1,8 @@
-import store from 'store'
+import { useStore } from '@store'
 
-const useHass = () => store(({ hass }) => hass)
+const useHass = () => {
+  const store = useStore()
+  return store(({ hass }) => hass)
+}
 
 export default useHass

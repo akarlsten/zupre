@@ -1,8 +1,10 @@
 import { useCallback } from 'preact/hooks'
 
-import store from 'store'
+import { useStore } from '@store'
 
 const useUser = () => {
+  const store = useStore()
+
   const user = store((state) => state.hass?.user)
   const entity = store(
     useCallback(

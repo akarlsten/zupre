@@ -1,5 +1,5 @@
-const path = require('path');
-const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const path = require('path')
+const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin')
 
 module.exports = {
   entry: './src/index.tsx',
@@ -29,10 +29,14 @@ module.exports = {
       'react-dom/test-utils': 'preact/test-utils',
       'react-dom': 'preact/compat', // Must be below test-utils
       'react/jsx-runtime': 'preact/jsx-runtime',
+      '@components': path.resolve(__dirname, 'src/card/components'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@store': path.resolve(__dirname, 'src/store'),
+      '@types': path.resolve(__dirname, 'src/types'),
     },
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
-};
+}

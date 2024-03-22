@@ -1,36 +1,41 @@
-import { FunctionComponent } from 'preact'
-import styled from 'styled-components'
+import { HomeAssistant } from 'custom-card-helpers'
 
-import { useConfig, useEntity, useHass, useUser } from 'hooks'
+import { useEffect } from 'preact/hooks'
 
-const Card: FunctionComponent = () => {
-  const sun = useEntity('sun.sun')
-  const me = useEntity('person.adam_karlsten')
-  const config = useConfig()
+import { Config } from '@types'
 
-  return (
-    <Root>
-      <Text>
-        <b>Hi, {me?.attributes?.friendly_name}!</b>
-      </Text>
-      <Text>
-        <b>{sun?.attributes.friendly_name}</b>
-      </Text>
-      <Text>{sun?.state}</Text>
-      <pre>{JSON.stringify(config || {}, null, 2)}</pre>
-    </Root>
-  )
+import { StoreProvider, useStore } from '@store'
+
+import Card from '@components/Card'
+
+interface StoreProps {
+  hass: HomeAssistant
+  config: Config
 }
 
-export default Card
+const StoreWrapper = ({ hass, config }: StoreProps) => {
+  const store = useStore()
+  const setHass = store((s) => s.setHass)
+  const setConfig = store((s) => s.setConfig)
 
-const Text = styled.p`
-  & > b {
-    color: var(--primary-color);
-    font-weight: bold;
-  }
-`
+  useEffect(() => {
+    setHass(hass)
+  }, [hass])
 
-const Root = styled.div`
-  padding: 1rem;
-`
+  useEffect(() => {
+    setConfig(config)
+  }, [config])
+
+  return <Card />
+}
+
+const StoreProviderWrapper = ({ hass, config }: StoreProps) => (
+  <StoreProvider>
+    <StoreWrapper
+      hass={hass}
+      config={config}
+    />
+  </StoreProvider>
+)
+
+export default StoreProviderWrapper

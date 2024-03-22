@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 
-import store from 'store'
+import { useStore } from '@store'
 
 import useEntity from './useEntity'
 
@@ -15,6 +15,8 @@ interface HistoryConfig {
 }
 
 const useHistory = (entityId: string, config?: HistoryConfig) => {
+  const store = useStore()
+
   const entity = useEntity(entityId)
   const hass = store((state) => state.hass)
   const [history, setHistory] = useState<Datum[]>([])

@@ -10,7 +10,14 @@
     "jsxImportSource": "preact",
     "baseUrl": ".",
     "paths": {
-      "*": ["./src/*"],
+      "*": ["src/*"],
+      "@store/*": ["src/store/*"],
+      "@store": ["src/store/index.ts"],
+      "@components/*": ["./src/card/components/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@hooks": ["./src/hooks/index.ts"],
+      "@types": ["src/types/index.ts"],
+      "@types/*": ["src/types/*"],
     }
   }
 }

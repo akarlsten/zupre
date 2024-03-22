@@ -37,7 +37,7 @@ function createStoreContext<TState>(createStore: () => UseBoundStore<StoreApi<TS
   const useStore = () => {
     const useZustandStore = useContext(StoreContext)
 
-    return useZustandStore()
+    return useZustandStore
   }
 
   return [StoreProvider, useStore] as const
